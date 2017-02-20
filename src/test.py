@@ -1,6 +1,7 @@
 # encoding: utf-8
 import jQueryApiCN
 import unittest
+from random import randint
 
 util = jQueryApiCN.util
 web = jQueryApiCN.web
@@ -40,16 +41,9 @@ class ApiTestCase(unittest.TestCase):
 
     def test_dict_value(self):
         main_dict = jQueryApiCN.get_api_dict()
-        pass_count = 0
-        for i in range(0, len(main_dict)):
-            key = main_dict.keys()[i]
-            # print "check api: %s" % key
-            if get_api_desc(key) in main_dict[key]:
-                pass_count += 1
-            else:
-                print "no pass api match for %s" % key
-        print "pass count %d" % pass_count
-        self.assertTrue(len(main_dict) - pass_count < 10)  # don't worry this
+        for i in range(0, 5):
+            key = main_dict.keys()[randint(0, len(main_dict) - 1)]
+            self.assertTrue(get_api_desc(key) in main_dict[key])
 
 
 if __name__ == '__main__':
