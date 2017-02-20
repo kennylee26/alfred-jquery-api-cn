@@ -98,7 +98,7 @@
 	<key>readme</key>
 	<string># Project Source
 
-* Github: https://github.com/kennylee26/jquery.api.cn.alfredworkflow
+* Github: https://github.com/kennylee26/alfred-jquery-api-cn
 
 # 使用
 * 快捷键jq
@@ -107,7 +107,9 @@
 
 * KennyLee (kennylee26@gmail.com)
 
-* PS: Java程序员使用php，大家见谅！</string>
+* 中文API手册数据来源于：http://www.jquery123.com/
+
+* 注：由于数据都是通过在线抓取获得，所以首次抓取稍慢，请耐心等等。而获取后将会缓存半年。</string>
 	<key>uidata</key>
 	<dict>
 		<key>63F60794-BB56-4415-9372-BAF974C3A7E1</key>
