@@ -4,7 +4,9 @@ from workflow import web, Workflow
 import util
 from bs4 import BeautifulSoup as Soup
 
-wf = Workflow()
+GITHUB_UPDATE_CONF = {'github_slug': 'kennylee26/alfred-jquery-api-cn'}
+
+wf = Workflow(update_settings=GITHUB_UPDATE_CONF)
 cache_max_age = 15811200  # s
 
 
