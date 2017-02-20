@@ -15,13 +15,7 @@ def query(api):
     cn_dict = wf.cached_data('workflow_jquery_api_cn_all', get_api_data, max_age=cache_max_age)
     for k in cn_dict.keys():
         if api.lower() in k.lower():
-            cache_name = 'workflow_jquery_api_cn_' + k
-            desc = wf.cached_data(cache_name)
-            if desc is None:
-                def api_desc():
-                    return get_api_desc(k)
-
-                desc = wf.cached_data(cache_name, api_desc, max_age=cache_max_age)  # half a year
+            desc = get_api_desc(k)
             if desc is not None:
                 d[k] = desc
     return d
@@ -37,12 +31,19 @@ def get_api_data():
 
 def get_api_desc(api):
     api_link = util.get_link(api)
-    resp = web.get(api_link)
-    desc = None
-    if resp.status_code == 200:
-        soup = Soup(resp.text, "html.parser")
-        desc = soup.select('.entry-wrapper > p.desc')[0].get_text()
-        desc = desc[desc.find(':') + 1:len(desc)].strip()
-    else:
-        print 'resp.status_code %d' % resp.status_code
+    desc = wf.cached_data('workflow_jquery_api_cn_' + api)
+    if desc is None:
+        def api_desc():
+            resp = web.get(api_link)
+            s = None
+            if resp.status_code == 200:
+                soup = Soup(resp.text, "html.parser")
+                s = soup.select('.entry-wrapper > p.desc')[0].get_text()
+                s = s[s.find(':') + 1:len(s)].strip()
+            else:
+                print 'resp.status_code %d' % resp.status_code
+            return s
+
+        desc = wf.cached_data('workflow_jquery_api_cn_' + api, api_desc, max_age=cache_max_age)  # half a year
+
     return desc
