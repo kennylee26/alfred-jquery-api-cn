@@ -1,0 +1,53 @@
+# OS generated files #  
+######################  
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs and databases #  
+######################  
+*.log
+
+# Package Files #
+*.war
+*.ear
+
+*.iml
+*.ipr
+*.iws
+*.swp
+
+# Compiled source #  
+################### 
+.gradle/
+out/
+build
+target
+bin/
+dist/
+src/main/webapp/WEB-INF/classes/
+
+# eclipse file #
+################
+.classpath
+.settings/
+.project
+.mymetadata
+.checkstyle
+
+# idea files #
+################
+.idea/
+tasks.xml
+
+# others
+src/main/resources/rebel.xml
+.sonar
+.grunt
+
+*.pyc
+
