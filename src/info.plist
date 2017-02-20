@@ -103,13 +103,11 @@
 # 使用
 * 快捷键jq
 
-# Contact
+# description
 
 * KennyLee (kennylee26@gmail.com)
 
-* 中文API手册数据来源于：http://www.jquery123.com/
-
-* 注：由于基础数据通过在线抓取获得，所以首次抓取续等片刻。而获取后将会缓存一天。</string>
+* 中文API手册数据来源于：http://www.jquery123.com/</string>
 	<key>uidata</key>
 	<dict>
 		<key>63F60794-BB56-4415-9372-BAF974C3A7E1</key>

@@ -2,9 +2,6 @@
 
 import sys
 import util
-from workflow import Workflow
-
-GITHUB_UPDATE_CONF = {'github_slug': 'kennylee26/alfred-jquery-api-cn'}
 
 
 def main(wf):
@@ -31,7 +28,7 @@ def main(wf):
 
 if __name__ == '__main__':
     # Create a global `Workflow` object
-    wf = Workflow(update_settings=GITHUB_UPDATE_CONF)
+    wf = util.get_wf()
     # Call your entry function via `Workflow.run()` to enable its helper
     # functions, like exception catching, ARGV normalization, magic
     # arguments etc.
