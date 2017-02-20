@@ -1,11 +1,9 @@
 # encoding: utf-8
 
-from urllib import urlopen
 from workflow import web, Workflow
 import util
 from bs4 import BeautifulSoup as Soup
 
-# cn_dict = CnDict.data
 wf = Workflow()
 cache_max_age = 15811200  # s
 
