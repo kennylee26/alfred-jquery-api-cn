@@ -1,6 +1,8 @@
 jquery.api.cn.alfredworkflow
 ============================
 
+[![Build Status](https://travis-ci.org/kennylee26/alfred-jquery-api-cn.svg?branch=master)](https://travis-ci.org/kennylee26/alfred-jquery-api-cn)
+
 jQuery中文API手册
 
 默认查询关键字为jq
