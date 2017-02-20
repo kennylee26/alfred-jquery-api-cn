@@ -7,43 +7,31 @@ from bs4 import BeautifulSoup as Soup
 GITHUB_UPDATE_CONF = {'github_slug': 'kennylee26/alfred-jquery-api-cn'}
 
 wf = Workflow(update_settings=GITHUB_UPDATE_CONF)
-cache_max_age = 15811200  # s
+cache_max_age = 3600  # a day
 
 
 def query(api):
     d = {}
-    cn_dict = wf.cached_data('workflow_jquery_api_cn_all', get_api_data, max_age=cache_max_age)
+    cn_dict = wf.cached_data('workflow_jquery_api_cn_all', get_api_dict, max_age=cache_max_age)
     for k in cn_dict.keys():
         if api.lower() in k.lower():
-            desc = get_api_desc(k)
+            desc = cn_dict[k]
             if desc is not None:
                 d[k] = desc
     return d
 
 
-def get_api_data():
-    api_json = web.get(util.api_url).json()
+def get_api_dict():
+    s = web.get(util.base_url).text
+    soup = Soup(s, "html.parser")
+    articles = soup.select('article')
     d = {}
-    for api in api_json:
-        d[api[api.keys()[0]]] = api[api.keys()[1]]
+    for art in articles:
+        title = art.select('.entry-title > a')[0]['href']
+        if title not in d:
+            title = title[0:len(title) - 1]
+            desc = art.select('.entry-summary')[0].get_text().strip()
+            d[title] = unicode(desc)
+        else:
+            print "existed key %s" % title
     return d
-
-
-def get_api_desc(api):
-    api_link = util.get_link(api)
-    desc = wf.cached_data('workflow_jquery_api_cn_' + api)
-    if desc is None:
-        def api_desc():
-            resp = web.get(api_link)
-            s = None
-            if resp.status_code == 200:
-                soup = Soup(resp.text, "html.parser")
-                s = soup.select('.entry-wrapper > p.desc')[0].get_text()
-                s = s[s.find(':') + 1:len(s)].strip()
-            else:
-                print 'resp.status_code %d' % resp.status_code
-            return s
-
-        desc = wf.cached_data('workflow_jquery_api_cn_' + api, api_desc, max_age=cache_max_age)  # half a year
-
-    return desc

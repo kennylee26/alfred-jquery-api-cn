@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 base_url = 'http://www.jquery123.com/'
-api_url = base_url + '/assets/js/apis.json'
 
 
 def get_link(api_name):
